@@ -4,19 +4,19 @@
  * @param {Object} props
  * @param {String} props.text
  * @param {String} props.icon
- * @param {Function} props.onClick 
+ * @param {Function} props.onClick
  * @return {JSX.Elements}
- * 
+ *
  */
 
 const SignInWithButton = ({ icon, text, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 rounded-full hover:bg-gray-50 transition font-montserrat"
+      className="font-montserrat flex w-full items-center justify-center gap-3 rounded-full border border-gray-300 py-3 transition hover:bg-gray-50"
     >
-      <img src={icon} className="w-5 h-5" alt="" />
-      <span className="text-gray-600 font-medium">{text}</span>
+      <img src={icon} className="h-5 w-5" alt="" />
+      <span className="font-medium text-gray-600">{text}</span>
     </button>
   );
 };

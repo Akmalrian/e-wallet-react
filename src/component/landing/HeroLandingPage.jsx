@@ -2,16 +2,14 @@ import BrandLandingPage from "../Card/BrandLandingPage";
 import LeftHeroLanding from "./LeftHeroLanding";
 
 const HeroLandingPage = () => (
-  <main className="bg-white w-full ">
-    <section
-      className="flex flex-col-reverse relative top-70 md:static md:flex-row w-full h-screen p-28 max-md:flex-col-reverse max-md:top-0 max-md:h-auto max-md:p-6 max-md:pt-8"
-    >
-      <div className="bg-white flex-1 rounded-r-2xl max-md:rounded-none">
+  <main className="w-full bg-white">
+    <section className="relative top-70 flex h-screen w-full flex-col-reverse p-28 max-md:top-0 max-md:h-auto max-md:flex-col-reverse max-md:p-6 max-md:pt-8 md:static md:flex-row">
+      <div className="flex-1 rounded-r-2xl bg-white max-md:rounded-none">
         <LeftHeroLanding />
       </div>
-      <div className="md:flex grid max-md:flex max-md:justify-center items-center">
+      <div className="grid items-center max-md:flex max-md:justify-center md:flex">
         <img
-          className="relative z-10 md:w-screen not-md:h-100 w-72 max-md:h-auto max-md:mx-auto"
+          className="relative z-10 w-72 not-md:h-100 max-md:mx-auto max-md:h-auto md:w-screen"
           src="/image/onlinePayment.png"
           alt="Wallet"
         />

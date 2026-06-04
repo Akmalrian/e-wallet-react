@@ -1,19 +1,21 @@
 const CardIncome = ({ icon, title, text, detail, arrow, day }) => {
-const isNegative = detail.includes("-");
-    return (
-    <div className="shadow h-36.75 md:w-60.5 w-screen rounded-md mt-10 flex flex-col md:items-start items-center justify-center
-  max-md:w-full max-md:h-auto max-md:py-5 max-md:rounded-xl">
-        <div className="ml-5">
+  const isNegative = detail.includes("-");
+  return (
+    <div className="mt-10 flex h-36.75 w-screen flex-col items-center justify-center rounded-md shadow max-md:h-auto max-md:w-full max-md:rounded-xl max-md:py-5 md:w-60.5 md:items-start">
+      <div className="ml-5">
         <div className="flex items-center">
-            <img className="w-8 h-8 mr-2" src={icon} alt="icon income" />
-        <h6 className="text-secondary font-medium text-medium">{title}</h6>
+          <img className="mr-2 h-8 w-8" src={icon} alt="icon income" />
+          <h6 className="text-secondary text-medium font-medium">{title}</h6>
         </div>
-            <p className="text-black font-medium mt-2 text-[24px]">{text}</p>
-            <p className={`text-tiny flex items-center gap-1 mt-2 ${isNegative ? 'text-red-500' : 'text-[#00A700]'}`}>
-            {detail}
-            <img src={arrow} alt="arrow" />{day}
-      </p>
-        </div>
+        <p className="mt-2 text-[24px] font-medium text-black">{text}</p>
+        <p
+          className={`text-tiny mt-2 flex items-center gap-1 ${isNegative ? "text-red-500" : "text-[#00A700]"}`}
+        >
+          {detail}
+          <img src={arrow} alt="arrow" />
+          {day}
+        </p>
+      </div>
     </div>
   );
 };

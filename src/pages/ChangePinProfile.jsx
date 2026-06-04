@@ -28,7 +28,7 @@ const ChangePinProfile = () => {
       dispatch(resetRegister());
       const updatedUsers = store.getState().register.users;
       const updatedUser = updatedUsers.find(
-        (u) => u.username === currentUser.username
+        (u) => u.username === currentUser.username,
       );
       if (updatedUser) dispatch(syncCurrentUser(updatedUser));
       navigate("/profile");
@@ -65,10 +65,12 @@ const ChangePinProfile = () => {
       toast.error("PIN hanya boleh angka!");
       return;
     }
-    dispatch(changePin({
-      username: currentUser.username,
-      newPin: pinString,
-    }));
+    dispatch(
+      changePin({
+        username: currentUser.username,
+        newPin: pinString,
+      }),
+    );
   };
 
   const handleVerifySuccess = () => {
@@ -93,34 +95,32 @@ const ChangePinProfile = () => {
         currentPin={currentUser?.pin || ""}
       />
 
-      <section className="grid md:grid-cols-[1fr_3fr_1.5fr] gap-15 font-montserrat">
+      <section className="font-montserrat grid gap-15 md:grid-cols-[1fr_3fr_1.5fr]">
         <nav>
           <NavigationDashboard />
         </nav>
 
-        <section className="mt-6 text-medium font-montserrat">
-          <div className="flex mx-4 items-center font-semibold gap-4 mb-8">
+        <section className="text-medium font-montserrat mt-6">
+          <div className="mx-4 mb-8 flex items-center gap-4 font-semibold">
             <img src="/image/2User.svg" alt="icon history" />
             <p>Profile</p>
           </div>
 
-          <div className="mx-4 md:w-280 md:h-auto justify-between shadow">
-
-            <div className={`${!isPinVerified ? "blur-sm pointer-events-none" : ""}`}>
-              <div className="text-center mb-10 md:mb-15 pt-5">
-                <p className="font-semibold px-10 py-5">Change Pin 👋</p>
+          <div className="mx-4 justify-between shadow md:h-auto md:w-280">
+            <div
+              className={`${!isPinVerified ? "pointer-events-none blur-sm" : ""}`}
+            >
+              <div className="mb-10 pt-5 text-center md:mb-15">
+                <p className="px-10 py-5 font-semibold">Change Pin 👋</p>
                 <p className="text-secondary">
                   Please save your pin because this is so important.
                 </p>
 
-                <div className="flex gap-5 justify-center mt-10">
+                <div className="mt-10 flex justify-center gap-5">
                   {[0, 1, 2, 3, 4, 5].map((i) => (
                     <input
                       key={i}
-                      className="change-pin-input w-10 h-10 md:w-20 md:h-20
-                        border-b-2 font-medium border-b-black
-                        focus:outline-none focus:border-b-blue-500
-                        text-3xl text-center text-[#0B132A] transition-colors"
+                      className="change-pin-input h-10 w-10 border-b-2 border-b-black text-center text-3xl font-medium text-[#0B132A] transition-colors focus:border-b-blue-500 focus:outline-none md:h-20 md:w-20"
                       type="password"
                       maxLength="1"
                       value={pin[i]}
@@ -137,7 +137,6 @@ const ChangePinProfile = () => {
                 </ButtonLogin>
               </div>
             </div>
-
           </div>
         </section>
       </section>

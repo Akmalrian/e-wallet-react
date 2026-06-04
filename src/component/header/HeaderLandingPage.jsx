@@ -5,14 +5,14 @@ function DropdownLanding() {
   return (
     <div>
       <Link to={"/login"}>
-      <button className="bg-white text-primary h-11 w-full rounded-[5px] hover:bg-gray-200 transition font-medium">
-        Sign In
-      </button>
+        <button className="text-primary h-11 w-full rounded-[5px] bg-white font-medium transition hover:bg-gray-200">
+          Sign In
+        </button>
       </Link>
       <Link to={"/register"}>
-      <button className="bg-white text-primary h-11 w-full rounded-[5px] hover:bg-gray-200 transition font-medium">
-        Sign Up
-      </button>
+        <button className="text-primary h-11 w-full rounded-[5px] bg-white font-medium transition hover:bg-gray-200">
+          Sign Up
+        </button>
       </Link>
     </div>
   );
@@ -25,20 +25,20 @@ function HeaderLandingPage() {
   };
 
   return (
-    <header className="bg-primary text-white w-full sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <header className="bg-primary sticky top-0 z-50 w-full text-white">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2">
-          <img className="w-8 h-8" src="/image/MoneyWallet.png" alt="Logo" />
+          <img className="h-8 w-8" src="/image/MoneyWallet.png" alt="Logo" />
           <span className="font-nunitoSans text-xl font-bold">E-Wallet</span>
         </div>
 
-        <div className="flex items-center gap-4 relative">
+        <div className="relative flex items-center gap-4">
           <div
-            className="cursor-pointer flex items-center md:hidden"
+            className="flex cursor-pointer items-center md:hidden"
             onClick={toggleDropDrown}
           >
             <svg
-              className="w-8 h-8 text-white"
+              className="h-8 w-8 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -61,14 +61,14 @@ function HeaderLandingPage() {
             </svg>
           </div>
 
-          <div className="hidden md:flex gap-4">
+          <div className="hidden gap-4 md:flex">
             <Link to={"/login"}>
-              <button className="border border-white h-11 px-6 rounded-[5px] hover:bg-white hover:text-primary transition font-medium">
+              <button className="hover:text-primary h-11 rounded-[5px] border border-white px-6 font-medium transition hover:bg-white">
                 Sign In
               </button>
             </Link>
             <Link to={"/register"}>
-              <button className="bg-white text-primary h-11 px-6 rounded-[5px] hover:bg-gray-200 transition font-medium">
+              <button className="text-primary h-11 rounded-[5px] bg-white px-6 font-medium transition hover:bg-gray-200">
                 Sign Up
               </button>
             </Link>
@@ -76,7 +76,7 @@ function HeaderLandingPage() {
         </div>
       </nav>
       {isOpen && (
-        <div className="absolute flex justify-center md:hidden top-16 w-screen bg-white text-black shadow-lg rounded-md">
+        <div className="absolute top-16 flex w-screen justify-center rounded-md bg-white text-black shadow-lg md:hidden">
           <DropdownLanding />
         </div>
       )}

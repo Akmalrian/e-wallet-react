@@ -47,7 +47,6 @@ function SetNominal() {
         window.scrollTo(0, 0);
   });
 
-  // Tambahkan recipientImage ke PinModal
 <PinModal
   isOpen={isPinModalOpen}
   onClose={() => setIsPinModalOpen(false)}
@@ -60,7 +59,7 @@ function SetNominal() {
     setIsFailedModalOpen(true);
   }}
   recipientName={name}
-  recipientImage={image} // ← tambahkan ini
+  recipientImage={image} 
   amount={parseInt(amount.replace(/\D/g, ""), 10) || 0}
 />
   return (

@@ -7,12 +7,11 @@ const TopUp = () => {
   const [amount, setAmount] = useState(0);
   const [selectedMethod, setSelectedMethod] = useState("");
   useEffect(() => {
-        window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   });
   return (
     <main>
-      <section className="grid md:grid-cols-[1fr_3fr_1.5fr] gap-15 font-montserrat
-        max-md:grid-cols-1 max-md:gap-0">
+      <section className="font-montserrat grid gap-15 max-md:grid-cols-1 max-md:gap-0 md:grid-cols-[1fr_3fr_1.5fr]">
         <nav>
           <NavigationDashboard />
         </nav>
@@ -25,10 +24,7 @@ const TopUp = () => {
           />
         </div>
         <div>
-          <TopUpPayment
-            amount={amount}
-            selectedMethod={selectedMethod}
-          />
+          <TopUpPayment amount={amount} selectedMethod={selectedMethod} />
         </div>
       </section>
     </main>

@@ -4,18 +4,20 @@
  * @param {Object} props
  * @param {String} props.text
  * @param {String} props.icon
- * @param {Function} props.onClick 
+ * @param {Function} props.onClick
  * @return {JSX.Elements}
- * 
+ *
  */
 
 const ButtonDashboardMenu = ({ icon, text, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="group w-52 flex items-center gap-2 h-11.25 font-montserrat"
+      className="group font-montserrat flex h-11.25 w-52 items-center gap-2"
     >
-      <span className="bg-white ml-2 rounded-full p-1"><img src={icon} className="w-6 h-6" alt="icon menu" /></span>
+      <span className="ml-2 rounded-full bg-white p-1">
+        <img src={icon} className="h-6 w-6" alt="icon menu" />
+      </span>
       <span className="">{text}</span>
     </button>
   );

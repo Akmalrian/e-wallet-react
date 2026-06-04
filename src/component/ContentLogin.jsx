@@ -27,7 +27,9 @@ const ContentLogin = () => {
 
   const onLogin = (data) => {
     const users = store.getState().register.users;
-    dispatch(loginUser({ username: data.username, password: data.password, users }));
+    dispatch(
+      loginUser({ username: data.username, password: data.password, users }),
+    );
   };
 
   useEffect(() => {
@@ -35,9 +37,8 @@ const ContentLogin = () => {
       toast.success(success);
       dispatch(clearMessages());
       setTimeout(() => {
-
         if (needsPin) {
-          navigate("/enter-pin"); 
+          navigate("/enter-pin");
         } else {
           navigate("/dashboard");
         }
@@ -50,56 +51,84 @@ const ContentLogin = () => {
   }, [success, error, dispatch, navigate, needsPin]);
 
   return (
-    <section className="h-screen w-full md:p-20 p-10">
+    <section className="h-screen w-full p-10 md:p-20">
       <div className="container">
-        <h4 className="logo flex text-primary my-2 font-nunitoSans text-xl items-center gap-2">
+        <h4 className="logo text-primary font-nunitoSans my-2 flex items-center gap-2 text-xl">
           <Link to="/">
-            <img className="w-8 h-8" src="/image/MoneyWallet.png" alt="Money-Wallet.png" />
+            <img
+              className="h-8 w-8"
+              src="/image/MoneyWallet.png"
+              alt="Money-Wallet.png"
+            />
           </Link>{" "}
           E-Wallet
         </h4>
-        <p className="text-3xl my-2 font-montserrat">
+        <p className="font-montserrat my-2 text-3xl">
           <b>Hello Welcome Back 👋</b>
         </p>
-        <p className="text-secondary mt-4 mb-6 font-montserrat">
+        <p className="text-secondary font-montserrat mt-4 mb-6">
           Fill out the form correctly or you can login with several option.
         </p>
       </div>
       <div className="space-y-6">
         <div className="space-y-3">
-          <SignInWithButton icon="/image/google.png" text="Sign In With Google" />
-          <SignInWithButton icon="/image/facebook.png" text="Sign In With Facebook" />
+          <SignInWithButton
+            icon="/image/google.png"
+            text="Sign In With Google"
+          />
+          <SignInWithButton
+            icon="/image/facebook.png"
+            text="Sign In With Facebook"
+          />
         </div>
-        <div className="relative flex py-2 items-center">
+        <div className="relative flex items-center py-2">
           <div className="grow border-t border-gray-200"></div>
-          <span className="shrink mx-4 text-gray-400 text-sm">Or</span>
+          <span className="mx-4 shrink text-sm text-gray-400">Or</span>
           <div className="grow border-t border-gray-200"></div>
         </div>
         <form onSubmit={handleSubmit(onLogin)} className="space-y-4">
           <InputLogin
-            label="Email" type="text" placeholder="Enter Your Email"
-            id="email" icon="/image/mail.png" {...register("username")}
+            label="Email"
+            type="text"
+            placeholder="Enter Your Email"
+            id="email"
+            icon="/image/mail.png"
+            {...register("username")}
           />
           {errors.username && (
-            <span className="text-red-500 text-sm block mt-1">{errors.username.message}</span>
+            <span className="mt-1 block text-sm text-red-500">
+              {errors.username.message}
+            </span>
           )}
           <InputLogin
-            label="Password" type="password" placeholder="Enter Your Password"
-            id="pass" icon="/image/password.png" {...register("password")}
+            label="Password"
+            type="password"
+            placeholder="Enter Your Password"
+            id="pass"
+            icon="/image/password.png"
+            {...register("password")}
           />
           {errors.password && (
-            <span className="text-red-500 text-sm block mt-1">{errors.password.message}</span>
+            <span className="mt-1 block text-sm text-red-500">
+              {errors.password.message}
+            </span>
           )}
-          <div className="text-right font-montserrat">
-            <Link to={"forgot-password"} className="text-sm text-primary hover:underline">
+          <div className="font-montserrat text-right">
+            <Link
+              to={"forgot-password"}
+              className="text-primary text-sm hover:underline"
+            >
               Forgot Password?
             </Link>
           </div>
           <ButtonLogin type="submit">Login</ButtonLogin>
         </form>
-        <p className="text-center text-secondary font-montserrat">
+        <p className="text-secondary font-montserrat text-center">
           Not Have An Account?
-          <Link className="text-primary hover:underline" to={"/register"}> Register</Link>
+          <Link className="text-primary hover:underline" to={"/register"}>
+            {" "}
+            Register
+          </Link>
         </p>
       </div>
     </section>

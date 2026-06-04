@@ -12,12 +12,10 @@ function ChangePasswordProfile() {
   const { currentUser } = useAppSelector((state) => state.auth);
   const { isSuccess, error } = useAppSelector((state) => state.register);
 
-  // State untuk setiap input
   const [existingPassword, setExistingPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Toggle show/hide password
   const [showExisting, setShowExisting] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -41,7 +39,6 @@ function ChangePasswordProfile() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     if (!existingPassword || !newPassword || !confirmPassword) {
       toast.error("Semua field harus diisi!");
       return;
@@ -57,112 +54,132 @@ function ChangePasswordProfile() {
       return;
     }
 
-    dispatch(changePassword({
-      username: currentUser.username,
-      existingPassword,
-      newPassword,
-    }));
+    dispatch(
+      changePassword({
+        username: currentUser.username,
+        existingPassword,
+        newPassword,
+      }),
+    );
   };
 
   return (
     <main>
-      <section className="grid md:grid-cols-[1fr_3fr_1.5fr] gap-15 font-montserrat">
+      <section className="font-montserrat grid gap-15 md:grid-cols-[1fr_3fr_1.5fr]">
         <nav>
           <NavigationDashboard />
         </nav>
-        <section className="mt-6 text-medium font-montserrat">
-          <div className="flex mx-4 items-center font-semibold gap-4 mb-8">
+        <section className="text-medium font-montserrat mt-6">
+          <div className="mx-4 mb-8 flex items-center gap-4 font-semibold">
             <img src="/image/2User.svg" alt="icon history" />
             <p>Profile</p>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="mx-4 md:w-280 md:h-auto justify-between shadow p-5"
+            className="mx-4 justify-between p-5 shadow md:h-auto md:w-280"
           >
             <div className="mb-10">
-              <p className="font-bold mb-4">Change Password</p>
+              <p className="mb-4 font-bold">Change Password</p>
 
               {/* Existing Password */}
               <h6 className="mt-3 font-semibold">Existing Password</h6>
-              <div className="relative flex items-center mt-1">
+              <div className="relative mt-1 flex items-center">
                 <img
                   src="/image/Password.svg"
                   alt=""
-                  className="absolute left-4 w-5 h-5 pointer-events-none"
+                  className="pointer-events-none absolute left-4 h-5 w-5"
                 />
                 <input
                   type={showExisting ? "text" : "password"}
                   placeholder="Enter Your Existing Password"
                   value={existingPassword}
                   onChange={(e) => setExistingPassword(e.target.value)}
-                  className="w-full py-3 pl-12 pr-12 rounded-md border border-gray-200
-                    focus:border-primary outline-none transition bg-transparent"
+                  className="focus:border-primary w-full rounded-md border border-gray-200 bg-transparent py-3 pr-12 pl-12 transition outline-none"
                 />
                 {/* Toggle show/hide */}
                 <button
                   type="button"
                   onClick={() => setShowExisting(!showExisting)}
-                  className="absolute right-4 text-gray-400 hover:text-primary"
+                  className="hover:text-primary absolute right-4 text-gray-400"
                 >
-                  {showExisting ? <img src="/public/image/closed-eye.jpg" className="w-6"></img> : <img src="/public/image/open-eye.png" className="w-6"></img>}
+                  {showExisting ? (
+                    <img
+                      src="/public/image/closed-eye.jpg"
+                      className="w-6"
+                    ></img>
+                  ) : (
+                    <img src="/public/image/open-eye.png" className="w-6"></img>
+                  )}
                 </button>
               </div>
 
               <h6 className="mt-3 font-semibold">New Password</h6>
-              <div className="relative flex items-center mt-1">
+              <div className="relative mt-1 flex items-center">
                 <img
                   src="/image/Password.svg"
                   alt=""
-                  className="absolute left-4 w-5 h-5 pointer-events-none"
+                  className="pointer-events-none absolute left-4 h-5 w-5"
                 />
                 <input
                   type={showNew ? "text" : "password"}
                   placeholder="Enter Your New Password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full py-3 pl-12 pr-12 rounded-md border border-gray-200
-                    focus:border-primary outline-none transition bg-transparent"
+                  className="focus:border-primary w-full rounded-md border border-gray-200 bg-transparent py-3 pr-12 pl-12 transition outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowNew(!showNew)}
-                  className="absolute right-4 text-gray-400 hover:text-primary"
+                  className="hover:text-primary absolute right-4 text-gray-400"
                 >
-                  {showNew ? <img src="/public/image/closed-eye.jpg" className="w-6"></img> : <img src="/public/image/open-eye.png" className="w-6"></img>}
+                  {showNew ? (
+                    <img
+                      src="/public/image/closed-eye.jpg"
+                      className="w-6"
+                    ></img>
+                  ) : (
+                    <img src="/public/image/open-eye.png" className="w-6"></img>
+                  )}
                 </button>
               </div>
 
               <h6 className="mt-3 font-semibold">Confirm New Password</h6>
-              <div className="relative flex items-center mt-1">
+              <div className="relative mt-1 flex items-center">
                 <img
                   src="/image/Password.svg"
                   alt=""
-                  className="absolute left-4 w-5 h-5 pointer-events-none"
+                  className="pointer-events-none absolute left-4 h-5 w-5"
                 />
                 <input
                   type={showConfirm ? "text" : "password"}
                   placeholder="Re-Type Your New Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`w-full py-3 pl-12 pr-12 rounded-md border
-                    focus:border-primary outline-none transition bg-transparent
-                    ${confirmPassword && confirmPassword !== newPassword
-                      ? "border-red-400"   // merah jika tidak cocok
-                      : "border-gray-200"  // normal jika kosong atau cocok
-                    }`}
+                  className={`focus:border-primary w-full rounded-md border bg-transparent py-3 pr-12 pl-12 transition outline-none ${
+                    confirmPassword && confirmPassword !== newPassword
+                      ? "border-red-400" // merah jika tidak cocok
+                      : "border-gray-200" // normal jika kosong atau cocok
+                  }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-4 text-gray-400 hover:text-primary"
+                  className="hover:text-primary absolute right-4 text-gray-400"
                 >
-                  {showConfirm ? <img src="/public/image/closed-eye.jpg" className="w-6"></img> : <img src="/public/image/open-eye.png" className="w-6"></img>}
+                  {showConfirm ? (
+                    <img
+                      src="/public/image/closed-eye.jpg"
+                      className="w-6"
+                    ></img>
+                  ) : (
+                    <img src="/public/image/open-eye.png" className="w-6"></img>
+                  )}
                 </button>
               </div>
 
               {confirmPassword && confirmPassword !== newPassword && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="mt-1 text-xs text-red-500">
                   Konfirmasi password tidak cocok!
                 </p>
               )}

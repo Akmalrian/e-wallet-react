@@ -15,7 +15,7 @@ const InputNominal = ({ label, type, placeholder, id, icon }) => {
     <div className="w-full">
       <label
         htmlFor={id}
-        className="block font-semibold text-[#0B132A] mb-2 text-base"
+        className="mb-2 block text-base font-semibold text-[#0B132A]"
       >
         {label}
       </label>
@@ -24,7 +24,7 @@ const InputNominal = ({ label, type, placeholder, id, icon }) => {
           <img
             src={icon}
             alt=""
-            className="absolute left-4 w-5 h-5 pointer-events-none"
+            className="pointer-events-none absolute left-4 h-5 w-5"
           />
         )}
 
@@ -32,7 +32,7 @@ const InputNominal = ({ label, type, placeholder, id, icon }) => {
           type={type}
           id={id}
           placeholder={placeholder}
-          className={`w-full py-3 rounded-md border border-gray-200 focus:border-primary outline-none transition bg-transparent ${icon ? "pl-12" : "pl-4"} pr-4`}
+          className={`focus:border-primary w-full rounded-md border border-gray-200 bg-transparent py-3 transition outline-none ${icon ? "pl-12" : "pl-4"} pr-4`}
         />
       </div>
     </div>

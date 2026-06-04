@@ -1,13 +1,10 @@
 import CardAboutAplication from "../Card/CardAboutAplication";
 
 const AboutAplication = () => (
-  <section
-    className="grid grid-cols-[2fr_3fr] w-full p-28 font-montserrat
-  max-md:grid-cols-1 max-md:p-6"
-  >
+  <section className="font-montserrat grid w-full grid-cols-[2fr_3fr] p-28 max-md:grid-cols-1 max-md:p-6">
     <div className="flex items-center p-4 max-md:justify-center max-md:text-center">
       <div>
-        <p className="text-[36px] font-medium mb-4">About The Aplication</p>
+        <p className="mb-4 text-[36px] font-medium">About The Aplication</p>
         <p className="text-medium text-secondary">
           We have some great features from the application and it’s totally free
           to use by all users around the world.

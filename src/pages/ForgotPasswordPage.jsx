@@ -1,15 +1,16 @@
 import ContentForgotPassword from "../component/ContentForgotPassword";
 
 const ForgotPasswordPage = () => (
-  <main className="md:bg-primary h-[130vh] w-full flex justify-center items-center -z-2 absolute">
+  <main className="md:bg-primary absolute -z-2 flex h-[130vh] w-full items-center justify-center">
     <img
-          className="absolute md:flex hidden -z-1 w-234 h-234"
-          src="/image/Ellipse 1 (1).svg"
-          alt="dim background"
-        />
-    <section className="flex md:w-137.5 w-full md:h-111.5 h-105 absolute">
-      <div className="bg-white flex-1 rounded-2xl">
-        <ContentForgotPassword /></div>
+      className="absolute -z-1 hidden h-234 w-234 md:flex"
+      src="/image/Ellipse 1 (1).svg"
+      alt="dim background"
+    />
+    <section className="absolute flex h-105 w-full md:h-111.5 md:w-137.5">
+      <div className="flex-1 rounded-2xl bg-white">
+        <ContentForgotPassword />
+      </div>
     </section>
   </main>
 );

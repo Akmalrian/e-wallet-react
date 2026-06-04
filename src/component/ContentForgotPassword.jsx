@@ -3,7 +3,10 @@ import ButtonLogin from "./button/ButtonLogin";
 import InputLogin from "./input/InputLogin";
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { changePasswordByEmail, resetRegister } from "../store/slices/registerSlice";
+import {
+  changePasswordByEmail,
+  resetRegister,
+} from "../store/slices/registerSlice";
 import toast from "react-hot-toast";
 
 const ContentForgotPassword = () => {
@@ -46,10 +49,12 @@ const ContentForgotPassword = () => {
       return;
     }
 
-    dispatch(changePasswordByEmail({
-      username: email,
-      newPassword,
-    }));
+    dispatch(
+      changePasswordByEmail({
+        username: email,
+        newPassword,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -65,28 +70,32 @@ const ContentForgotPassword = () => {
   }, [isSuccess, error, dispatch, navigate]);
 
   return (
-    <section className="w-full p-10 justify-center items-center">
+    <section className="w-full items-center justify-center p-10">
       <div className="container">
-        <h4 className="logo flex text-primary my-2 font-nunitoSans text-xl items-center gap-2">
-          <img className="w-8 h-8" src="/image/MoneyWallet.png" alt="Money-Wallet.png" />
+        <h4 className="logo text-primary font-nunitoSans my-2 flex items-center gap-2 text-xl">
+          <img
+            className="h-8 w-8"
+            src="/image/MoneyWallet.png"
+            alt="Money-Wallet.png"
+          />
           E-Wallet
         </h4>
 
         {step === 1 ? (
           <>
-            <p className="text-3xl my-2 font-montserrat">
+            <p className="font-montserrat my-2 text-3xl">
               <b>Fill Out Form Correctly 👋</b>
             </p>
-            <p className="text-secondary mt-4 mb-6 font-montserrat">
+            <p className="text-secondary font-montserrat mt-4 mb-6">
               We will verify your email before changing the password.
             </p>
           </>
         ) : (
           <>
-            <p className="text-3xl my-2 font-montserrat">
+            <p className="font-montserrat my-2 text-3xl">
               <b>Create New Password</b>
             </p>
-            <p className="text-secondary mt-2 mb-6 font-montserrat">
+            <p className="text-secondary font-montserrat mt-2 mb-6">
               Enter your new password for <b>{email}</b>
             </p>
           </>
@@ -94,7 +103,6 @@ const ContentForgotPassword = () => {
       </div>
 
       <div className="space-y-6">
-
         {step === 1 && (
           <form onSubmit={handleVerifyEmail} className="space-y-4">
             <InputLogin
@@ -107,12 +115,10 @@ const ContentForgotPassword = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            {emailError && (
-              <p className="text-red-500 text-sm">{emailError}</p>
-            )}
+            {emailError && <p className="text-sm text-red-500">{emailError}</p>}
             <ButtonLogin type="submit">Verify Email</ButtonLogin>
 
-            <p className="text-center text-secondary font-montserrat text-sm">
+            <p className="text-secondary font-montserrat text-center text-sm">
               Remember your password?{" "}
               <Link className="text-primary hover:underline" to="/login">
                 Login
@@ -124,50 +130,49 @@ const ContentForgotPassword = () => {
         {step === 2 && (
           <form onSubmit={handleChangePassword} className="space-y-4">
             <div className="bg-white md:w-137.5">
-            <InputLogin
-              label="New Password"
-              type="password"
-              placeholder="Enter New Password"
-              id="newPassword"
-              icon="/image/password.png"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              required
-            />
-            <InputLogin
-              label="Confirm Password"
-              type="password"
-              placeholder="Re-enter New Password"
-              id="confirmPassword"
-              icon="/image/password.png"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+              <InputLogin
+                label="New Password"
+                type="password"
+                placeholder="Enter New Password"
+                id="newPassword"
+                icon="/image/password.png"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
+              <InputLogin
+                label="Confirm Password"
+                type="password"
+                placeholder="Re-enter New Password"
+                id="confirmPassword"
+                icon="/image/password.png"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
 
-            {passwordError && (
-              <p className="text-red-500 text-sm">{passwordError}</p>
-            )}
+              {passwordError && (
+                <p className="text-sm text-red-500">{passwordError}</p>
+              )}
 
-            {confirmPassword && confirmPassword === newPassword && (
-              <p className="text-green-500 text-sm">✓ Password cocok</p>
-            )}
+              {confirmPassword && confirmPassword === newPassword && (
+                <p className="text-sm text-green-500">✓ Password cocok</p>
+              )}
 
-            <ButtonLogin type="submit">Change Password</ButtonLogin>
+              <ButtonLogin type="submit">Change Password</ButtonLogin>
 
-            <button
-              type="button"
-              onClick={() => {
-                setStep(1);
-                setNewPassword("");
-                setConfirmPassword("");
-                setPasswordError("");
-              }}
-              className="w-full text-center text-secondary text-sm
-                hover:text-primary transition-colors"
-            >
-              ← Kembali
-            </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setStep(1);
+                  setNewPassword("");
+                  setConfirmPassword("");
+                  setPasswordError("");
+                }}
+                className="text-secondary hover:text-primary w-full text-center text-sm transition-colors"
+              >
+                ← Kembali
+              </button>
             </div>
           </form>
         )}

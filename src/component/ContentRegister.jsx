@@ -20,7 +20,7 @@ const ContentRegister = () => {
   const navigate = useNavigate();
 
   const { users, isSuccess, isLoading, error } = useAppSelector(
-    (state) => state.register
+    (state) => state.register,
   );
 
   const {
@@ -32,13 +32,14 @@ const ContentRegister = () => {
   });
 
   const onSubmit = (data) => {
-
     dispatch(registerStart());
 
     const isTaken = users.some((u) => u.username === data.username);
 
     if (isTaken) {
-      dispatch(registerFailed("Email sudah digunakan! Silahkan pilih yang lain."));
+      dispatch(
+        registerFailed("Email sudah digunakan! Silahkan pilih yang lain."),
+      );
       return;
     }
 
@@ -59,55 +60,88 @@ const ContentRegister = () => {
   }, [isSuccess, error, dispatch, navigate]);
 
   return (
-    <section className="h-screen w-full md:p-20 p-10 items-center">
+    <section className="h-screen w-full items-center p-10 md:p-20">
       <div className="container">
-        <h4 className="logo flex text-primary my-2 font-nunitoSans text-xl items-center gap-2">
-          <img className="w-8 h-8" src="/image/MoneyWallet.png" alt="Money-Wallet.png" />
+        <h4 className="logo text-primary font-nunitoSans my-2 flex items-center gap-2 text-xl">
+          <img
+            className="h-8 w-8"
+            src="/image/MoneyWallet.png"
+            alt="Money-Wallet.png"
+          />
           E-Wallet
         </h4>
-        <p className="text-3xl my-2 font-montserrat">
-          <b>Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</b>
+        <p className="font-montserrat my-2 text-3xl">
+          <b>
+            Start Accessing Banking Needs With All Devices and All Platforms
+            With 30.000+ Users
+          </b>
         </p>
-        <p className="text-secondary mt-4 mb-6 font-montserrat">
-          Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!
+        <p className="text-secondary font-montserrat mt-4 mb-6">
+          Transfering money is eassier than ever, you can access Zwallet
+          wherever you are. Desktop, laptop, mobile phone? we cover all of that
+          for you!
         </p>
       </div>
       <div className="space-y-6">
         <div className="space-y-3">
-          <SignInWithButton icon="/image/google.png" text="Sign In With Google" />
-          <SignInWithButton icon="/image/facebook.png" text="Sign In With Facebook" />
+          <SignInWithButton
+            icon="/image/google.png"
+            text="Sign In With Google"
+          />
+          <SignInWithButton
+            icon="/image/facebook.png"
+            text="Sign In With Facebook"
+          />
         </div>
-        <div className="relative flex py-2 items-center">
+        <div className="relative flex items-center py-2">
           <div className="grow border-t border-gray-200"></div>
-          <span className="shrink mx-4 text-gray-400 text-sm">Or</span>
+          <span className="mx-4 shrink text-sm text-gray-400">Or</span>
           <div className="grow border-t border-gray-200"></div>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <InputLogin
-              label="Email" type="text" placeholder="Enter Your Email"
-              id="username" icon="/image/mail.png" {...register("username")}
+              label="Email"
+              type="text"
+              placeholder="Enter Your Email"
+              id="username"
+              icon="/image/mail.png"
+              {...register("username")}
             />
             {errors.username && (
-              <span className="text-red-500 text-sm block mt-1">{errors.username.message}</span>
+              <span className="mt-1 block text-sm text-red-500">
+                {errors.username.message}
+              </span>
             )}
           </div>
           <div>
             <InputLogin
-              label="Password" type="password" placeholder="Enter Your Password"
-              id="password" icon="/image/password.png" {...register("password")}
+              label="Password"
+              type="password"
+              placeholder="Enter Your Password"
+              id="password"
+              icon="/image/password.png"
+              {...register("password")}
             />
             {errors.password && (
-              <span className="text-red-500 text-sm block mt-1">{errors.password.message}</span>
+              <span className="mt-1 block text-sm text-red-500">
+                {errors.password.message}
+              </span>
             )}
           </div>
           <div>
             <InputLogin
-              label="Confirm Password" type="password" placeholder="Enter Your Password Again"
-              id="repeat_password" icon="/image/password.png" {...register("repeat_password")}
+              label="Confirm Password"
+              type="password"
+              placeholder="Enter Your Password Again"
+              id="repeat_password"
+              icon="/image/password.png"
+              {...register("repeat_password")}
             />
             {errors.repeat_password && (
-              <span className="text-red-500 text-sm block mt-1">{errors.repeat_password.message}</span>
+              <span className="mt-1 block text-sm text-red-500">
+                {errors.repeat_password.message}
+              </span>
             )}
           </div>
 
@@ -115,9 +149,12 @@ const ContentRegister = () => {
             {isLoading ? "Mendaftar..." : "Register"}
           </ButtonLogin>
         </form>
-        <p className="text-center text-secondary font-montserrat">
+        <p className="text-secondary font-montserrat text-center">
           Have An Account?
-          <Link className="text-primary hover:underline" to={"/login"}> Login</Link>
+          <Link className="text-primary hover:underline" to={"/login"}>
+            {" "}
+            Login
+          </Link>
         </p>
       </div>
     </section>

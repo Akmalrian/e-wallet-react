@@ -4,14 +4,13 @@ import IncomeChartDashboard from "../component/dashboard/IncomeChartDashboard";
 import TransactionHistory from "../component/dashboard/TransactionHistory";
 import { useEffect } from "react";
 
-function Dashboard(){
+function Dashboard() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
   return (
-  <main>
-    <section className="px-4 md:px-0 grid grid-cols-1 md:grid-cols-[1fr_3fr_1.5fr] gap-6 md:gap-10 items-start font-montserrat
-  max-md:grid-cols-1 max-md:px-0">
+    <main>
+      <section className="font-montserrat grid grid-cols-1 items-start gap-6 px-4 max-md:grid-cols-1 max-md:px-0 md:grid-cols-[1fr_3fr_1.5fr] md:gap-10 md:px-0">
         <nav>
           <NavigationDashboard />
         </nav>
@@ -21,7 +20,8 @@ function Dashboard(){
         <div>
           <TransactionHistory />
         </div>
-    </section>
-  </main>
-);}
+      </section>
+    </main>
+  );
+}
 export default Dashboard;
