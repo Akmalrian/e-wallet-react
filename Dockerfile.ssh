@@ -1,0 +1,19 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y nginx openssh-server sudo
+
+RUN useradd -m -s /bin/bash akmal
+
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+
+USER akmal
+RUN mkdir -p /home/akmal/.ssh
+COPY id_rsa_docker.pub /home/akmal/.ssh/authorized_keys
+
+USER root
+RUN chown akmal:akmal /home/akmal/.ssh/authorized_keys && \
+    chmod 600 /home/akmal/.ssh/authorized_keys && \
+    mkdir /var/run/sshd
+RUN chmod 700 /home/akmal/.ssh
+EXPOSE 22
